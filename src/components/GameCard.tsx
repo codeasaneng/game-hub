@@ -1,6 +1,4 @@
 import {
-  Button,
-  ButtonGroup,
   Card,
   CardBody,
   CardFooter,
@@ -10,7 +8,8 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import { Game } from "../hooks/useGames";
+import { Game, Platform } from "../hooks/useGames";
+import PlatformIconList from "./PlatformIconList";
 
 interface GameProps {
   game: Game;
@@ -18,13 +17,14 @@ interface GameProps {
 
 const GameCard = ({ game }: GameProps) => {
   return (
-    <Card borderRadius={10} overflow='hidden'>
+    <Card borderRadius={10} overflow="hidden">
       <Image src={game.background_image} />
       <CardBody>
-          <Heading size="md">{game.name}</Heading>
-          <Text>
-            {game.description}
-          </Text>
+        <Heading padding={2} size="md">{game.name}</Heading>
+        <Divider/>
+        <PlatformIconList
+          plaforms={game.parent_platforms.map((p) => p.platform)}
+        />
       </CardBody>
     </Card>
   );
