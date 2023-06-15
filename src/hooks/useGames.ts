@@ -5,10 +5,10 @@ import { CanceledError } from "axios";
 export interface Game {
   id: number;
   name: string;
-  //   slug: string;
-  //   gamesCount: number;
-  //   imageBackground: string;
-  //   description: string;
+  slug: string;
+  games_count: number;
+  background_image: string;
+  description: string;
 }
 
 export interface FetchGamesResponse {
@@ -21,18 +21,17 @@ const useGames = () => {
   const [error, setError] = useState("");
 
   useEffect(() => {
-
     const controler = new AbortController();
 
     apiClient
       .get<FetchGamesResponse>("/games", { signal: controler.signal })
       .then((res) => setGames(res.data.results))
       .catch((err) => {
-        if(err instanceof CanceledError) return;
-        setError(err.message)
-    });
+        if (err instanceof CanceledError) return;
+        setError(err.message);
+      });
 
-      return () => controler.abort();
+    return () => controler.abort();
   }, []);
 
   return { games, error };
