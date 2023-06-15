@@ -6,6 +6,8 @@ import {
   HStack,
   Heading,
   Image,
+  Skeleton,
+  SkeletonText,
   Stack,
   Text,
 } from "@chakra-ui/react";
@@ -20,7 +22,7 @@ interface GameProps {
 
 const GameCard = ({ game }: GameProps) => {
   return (
-    <Card borderRadius={10} overflow="hidden">
+    <Card width={'300px'} borderRadius={10} overflow="hidden">
       <Image src={getCroppedImageUrl(game.background_image)} />
       <CardBody>
         <Heading padding={2} size="md">
