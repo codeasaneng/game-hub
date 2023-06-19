@@ -33,7 +33,7 @@ const PlatformIconList = ({ plaforms }: IconProps) => {
   return (
     <HStack padding={2}>
       {plaforms.map((platform) => (
-        <Icon as={iconMap[platform.slug]} color={"gray.500"}>{platform.slug}</Icon>
+        <Icon key={platform.id} as={iconMap[platform.slug]} color={"gray.500"}>{platform.slug}</Icon>
       ))}
     </HStack>
   );
