@@ -5,9 +5,11 @@ import usePlatforms, { Platform } from "../hooks/usePlatforms";
 
 interface Props {
   onClickPlatformSelector: (platoform: Platform) => void;
+  filteredPlatform: Platform | null
+
 }
 
-const PlatformSelector = ({ onClickPlatformSelector }: Props) => {
+const PlatformSelector = ({ onClickPlatformSelector, filteredPlatform }: Props) => {
   const { data, error } = usePlatforms();
 
   if (error) return null;
@@ -19,7 +21,7 @@ const PlatformSelector = ({ onClickPlatformSelector }: Props) => {
         as={Button}
         rightIcon={<BsChevronDown />}
       >
-        Platforms
+        {filteredPlatform === undefined ? 'Platforms' : filteredPlatform?.name}
       </MenuButton>
       <MenuList>
         {data.map((platform) => (
