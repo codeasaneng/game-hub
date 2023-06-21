@@ -1,24 +1,24 @@
 import {
+    Box,
   Button,
   HStack,
   Heading,
   Image,
   List,
   ListItem,
-  Text,
 } from "@chakra-ui/react";
-import useData from "../hooks/useData";
-import { Genre } from "../hooks/useGenres";
+import useGenres, { Genre } from "../hooks/useGenres";
 
 interface Props {
     onClickGenre: (genre: Genre) => void
 }
 
 const GenresList = ({onClickGenre}: Props) => {
-  const { data, error, isLoading } = useData<Genre>("/genres");
+  const { data, error, isLoading } = useGenres()
   return (
     <>
       <Heading padding={4}>Genres</Heading>
+      <Box overflow="auto" maxHeight="700px">
       <List>
         {data.map((genre) => (
           <ListItem key={genre.id} padding={'8px'}>
@@ -31,6 +31,8 @@ const GenresList = ({onClickGenre}: Props) => {
           </ListItem>
         ))}
       </List>
+      </Box>
+
     </>
   );
 };

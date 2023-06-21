@@ -1,4 +1,4 @@
-import { Grid, GridItem, Heading, Show } from "@chakra-ui/react";
+import { Grid, GridItem, HStack, Heading, Show } from "@chakra-ui/react";
 import GameGrid from "./components/GameGrid";
 import NavBar from "./components/NavBar";
 import GenresList from "./components/GenresList";
@@ -19,19 +19,33 @@ function App() {
         base: `"nav" "main"`,
         lg: `"nav nav" "aside main"`,
       }}
+      templateColumns={{
+        base: '1fr',
+        lg: '400px 1fr'
+      }}
     >
       <GridItem area="nav">
         <NavBar />
       </GridItem>
-      <Show above="lg">
-        <GridItem area="aside">
+      <Show above="lg">ß
+        <GridItem padding={4} area="aside">
           <GenresList onClickGenre={(genre) => setSelectedGenre(genre)} />
         </GridItem>
       </Show>
-      <GridItem area="main">
-        <PlatformSelector
-          onClickPlatformSelector={(platform) => setSelectedPlatform(platform)}
-        />
+      <GridItem padding={4} area="main">
+        <Heading padding={4}>{selectedGenre?.name} Games</Heading>
+        <HStack>
+          <PlatformSelector
+            onClickPlatformSelector={(platform) =>
+              setSelectedPlatform(platform)
+            }
+          />
+          <PlatformSelector
+            onClickPlatformSelector={(platform) =>
+              setSelectedPlatform(platform)
+            }
+          />
+        </HStack>
         <GameGrid
           filterGenre={selectedGenre}
           filterPlatform={selectedPlatform}

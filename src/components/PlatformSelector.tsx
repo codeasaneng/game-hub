@@ -15,8 +15,9 @@ const PlatformSelector = ({ onClickPlatformSelector }: Props) => {
   return (
     <Menu>
       <MenuButton
+        marginBottom={4}
+        marginRight={12}
         _hover={{ bg: "gray.400" }}
-        ml={"20px"}
         as={Button}
         rightIcon={<BsChevronDown />}
       >

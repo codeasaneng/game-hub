@@ -17,11 +17,13 @@ export interface Game {
 }
 
 const useGames = (filterGenre: Genre | null, filterPlatform: Platform | null) =>
-  useData<Game>("/game", {
+  useData<Game>("/games", {
     params: {
       genres: filterGenre?.id,
       platforms: filterPlatform?.id,
     },
-  });
+  },
+  [filterGenre?.id, filterPlatform?.id]
+  );
 
 export default useGames;
