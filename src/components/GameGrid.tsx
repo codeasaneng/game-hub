@@ -35,7 +35,7 @@ const GameGrid = ({ gameQuery }: Props) => {
               <GameCard game={game} />
             </GameCardContainer>
           ))}
-          {data.length === 0 && 
+          {data.length === 0 && !isLoading && 
             <p>No games available matching</p>
           }
         </SimpleGrid>
