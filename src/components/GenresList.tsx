@@ -12,9 +12,10 @@ import useGenres, { Genre } from "../hooks/useGenres";
 
 interface Props {
     onClickGenre: (genre: Genre) => void
+    selectedGenre: Genre | null
 }
 
-const GenresList = ({onClickGenre}: Props) => {
+const GenresList = ({onClickGenre, selectedGenre}: Props) => {
   const { data, error, isLoading } = useGenres()
 
   if(isLoading) return <Spinner/>
@@ -30,7 +31,7 @@ const GenresList = ({onClickGenre}: Props) => {
           <ListItem key={genre.id} padding={'8px'}>
               <HStack justifyContent="flex-start" >
                 <Image mr={2} boxSize="50px" src={genre.image_background} borderRadius={8} />
-                <Button onClick={() => onClickGenre(genre)} variant={"link"} fontSize="20px">
+                <Button fontWeight={genre.id === selectedGenre?.id ? 'bold' : 'normal'} onClick={() => onClickGenre(genre)} variant={"link"} fontSize="20px">
                   {genre.name}
                 </Button>
               </HStack>
